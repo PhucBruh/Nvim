@@ -172,7 +172,6 @@ return {
 
   {
     "rebelot/heirline.nvim",
-    dependencies = "abeldekat/harpoonline",
     opts = function(_, opts)
       local status = require "astroui.status"
       opts.statusline = nil
