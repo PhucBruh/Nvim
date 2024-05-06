@@ -11,4 +11,6 @@ return {
   { import = "astrocommunity.pack.go" },
 
   { import = "astrocommunity.completion.cmp-cmdline" },
+
+  { import = "astrocommunity.recipes.vscode" },
 }
