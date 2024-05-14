@@ -66,7 +66,6 @@ return {
 
   -- move row like normal ide
   {
-
     "echasnovski/mini.move",
     config = function()
       require("mini.move").setup {

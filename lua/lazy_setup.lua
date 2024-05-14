@@ -16,7 +16,10 @@ require("lazy").setup({
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "astrodark", "habamax" } },
-  ui = { backdrop = 100 },
+  ui = {
+    border = "rounded",
+    backdrop = 100,
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins, add more to your liking
@@ -28,5 +31,8 @@ require("lazy").setup({
         "zipPlugin",
       },
     },
+  },
+  change_detection = {
+    notify = false,
   },
 } --[[@as LazyConfig]])

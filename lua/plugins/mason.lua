@@ -4,6 +4,18 @@
 return {
   -- use mason-lspconfig to configure LSP installations
   {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup {
+        ui = {
+          border = "rounded",
+        },
+      }
+
+      require("lspconfig.ui.windows").default_options.border = "rounded"
+    end,
+  },
+  {
     "williamboman/mason-lspconfig.nvim",
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = function(_, opts)

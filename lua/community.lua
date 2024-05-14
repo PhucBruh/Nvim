@@ -12,5 +12,6 @@ return {
 
   { import = "astrocommunity.completion.cmp-cmdline" },
 
+  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.recipes.vscode" },
 }

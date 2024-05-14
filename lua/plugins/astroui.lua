@@ -5,176 +5,50 @@ return {
     ---@type AstroUIOpts
     opts = {
       -- change colorscheme
-      colorscheme = "catppuccin",
-      -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
-      highlights = {
-        init = { -- this table overrides highlights in all themes
-          -- Normal = { bg = "#000000" },
-        },
-        astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
-          -- Normal = { bg = "#000000" },
-        },
-      },
-      -- Icons can be configured throughout the interface
-      icons = {
-        -- configure the loading of the lsp in the status line
-        LSPLoading1 = "⠋",
-        LSPLoading2 = "⠙",
-        LSPLoading3 = "⠹",
-        LSPLoading4 = "⠸",
-        LSPLoading5 = "⠼",
-        LSPLoading6 = "⠴",
-        LSPLoading7 = "⠦",
-        LSPLoading8 = "⠧",
-        LSPLoading9 = "⠇",
-        LSPLoading10 = "⠏",
-      },
+      -- colorscheme = "catppuccin-mocha",
     },
   },
 
   {
     "goolord/alpha-nvim",
     opts = function(_, opts)
+      local logo = [[
+           ██████████████  █████       
+         ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██      
+         ██▒▒▒▒████████████▒▒██████    
+       ██▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██  
+     ████▒▒▒▒▒▒░░░░░░░░░░░░▒▒░░░░░░░░░░
+   ██▒▒██▒▒▒▒░░░░██    ██░░░░██    ██░░
+   ██▒▒██▒▒▒▒░░██      ██░░██      ██░░
+ ████▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░▒▒░░░░░░░░░░  
+ ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒▒░▒▒▒▒▒▒    
+ ██▒▒▒▒▒▒▒░░░▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒▒▒▒▒██  
+ ██▒▒▒▒▒▒▒░░█████████░░▒▒▒▒▒▒░░░░▒▒██  
+ ██▒▒▒▒▒▒▒▒░░██░░░░████████████████████
+   ██▒▒▒▒▒▒▒░░██████░░░░░░░░░░░░░░░██  
+   ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████████████████
+     ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██    
+       ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██      
+         ████▒▒▒▒▒▒▒▒▒▒▒▒██████        
+             ██████████████            
+]]
+
       -- customize the dashboard header
-      opts.section.header.val = {
-        "           ██████████████  █████       ",
-        "         ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██      ",
-        "         ██▒▒▒▒████████████▒▒██████    ",
-        "       ██▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██  ",
-        "     ████▒▒▒▒▒▒░░░░░░░░░░░░▒▒░░░░░░░░░░",
-        "   ██▒▒██▒▒▒▒░░░░██    ██░░░░██    ██░░",
-        "   ██▒▒██▒▒▒▒░░██      ██░░██      ██░░",
-        " ████▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░▒▒░░░░░░░░░░  ",
-        " ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒▒░▒▒▒▒▒▒    ",
-        " ██▒▒▒▒▒▒▒░░░▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒▒▒▒▒██  ",
-        " ██▒▒▒▒▒▒▒░░█████████░░▒▒▒▒▒▒░░░░▒▒██  ",
-        " ██▒▒▒▒▒▒▒▒░░██░░░░████████████████████",
-        "   ██▒▒▒▒▒▒▒░░██████░░░░░░░░░░░░░░░██  ",
-        "   ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████████████████",
-        "     ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██    ",
-        "       ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██      ",
-        "         ████▒▒▒▒▒▒▒▒▒▒▒▒██████        ",
-        "             ██████████████            ",
-      }
+      opts.section.header.val = vim.split(logo, "\n")
+
+      opts.section.buttons.val = { nil }
       return opts
     end,
   },
 
   -- color scheme
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    opts = {
-      term_colors = true,
-
-      styles = {
-        comments = {},
-        conditionals = {},
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-      },
-
-      color_overrides = {
-        mocha = {
-          base = "#151C1E",
-          mantle = "#151C1E",
-        },
-      },
-
-      integrations = {
-        telescope = {
-          enabled = true,
-          style = "nvchad",
-        },
-        dropbar = {
-          enabled = true,
-          color_mode = true,
-        },
-        neotree = true,
-        noice = true,
-      },
-
-      custom_highlights = function(_)
-        local mocha = require("catppuccin.palettes").get_palette "mocha"
-
-        return {
-          -- Comment = { fg = colors.flamingo },
-          -- TabLineSel = { bg = colors.pink },
-          WinSeparator = { fg = mocha.blue },
-
-          -- noice
-          NoiceCmdlinePopupBorder = { fg = mocha.blue },
-          NoiceCmdlinePopupBorderSearch = { fg = mocha.blue },
-          NoiceConfirmBorder = { fg = mocha.blue },
-
-          -- telescope
-          TelescopeBorder = { fg = mocha.blue },
-          TelescopePromptBorder = { fg = mocha.blue, bg = mocha.base },
-        }
-      end,
-    },
-  },
-
-  -- for status line
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "meuter/lualine-so-fancy.nvim",
-      "archibate/lualine-time",
-    },
-    opts = {
-      options = {
-        component_separators = { left = "│", right = "│" },
-        -- section_separators = { left = "", right = "" },
-        globalstatus = true,
-        refresh = {
-          statusline = 100,
-        },
-      },
-      sections = {
-        lualine_a = {
-          { "fancy_mode", width = 3 },
-        },
-        lualine_b = {
-          { "fancy_branch" },
-          { "fancy_diff" },
-        },
-        lualine_c = {
-          { "fancy_cwd", substitute_home = true },
-        },
-        lualine_x = {
-          { "fancy_macro" },
-          { "fancy_diagnostics" },
-          { "fancy_searchcount" },
-          { "fancy_location" },
-        },
-        lualine_y = {
-          { "encoding" },
-          { "fileformat" },
-          { "filetype" },
-        },
-        lualine_z = {
-          { "fancy_lsp_servers" },
-          { "ctime" },
-        },
-      },
-    },
-  },
+  { "folke/tokyonight.nvim" },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
   {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
       local status = require "astroui.status"
-      opts.statusline = nil
 
       opts.statuscolumn = { -- statuscolumn
         init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
@@ -183,14 +57,6 @@ return {
         status.component.foldcolumn(),
       }
     end,
-  },
-
-  -- notifications and LSP progress messages
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      -- options
-    },
   },
 
   -- indent line animation
@@ -223,6 +89,89 @@ return {
         -- globally enable default icons (default to false)
         -- will get overriden by `get_icons` option
         default = true,
+      }
+    end,
+  },
+
+  {
+    "echasnovski/mini.animate",
+    event = "VeryLazy",
+    opts = function()
+      -- don't use animate when scrolling with the mouse
+      local mouse_scrolled = false
+      for _, scroll in ipairs { "Up", "Down" } do
+        local key = "<ScrollWheel" .. scroll .. ">"
+        vim.keymap.set({ "", "i" }, key, function()
+          mouse_scrolled = true
+          return key
+        end, { expr = true })
+      end
+
+      local animate = require "mini.animate"
+      return {
+        resize = {
+          timing = animate.gen_timing.linear { duration = 100, unit = "total" },
+        },
+        scroll = {
+          timing = animate.gen_timing.linear { duration = 150, unit = "total" },
+          subscroll = animate.gen_subscroll.equal {
+            predicate = function(total_scroll)
+              if mouse_scrolled then
+                mouse_scrolled = false
+                return false
+              end
+              return total_scroll > 1
+            end,
+          },
+        },
+      }
+    end,
+  },
+
+  {
+    "xiyaowong/transparent.nvim",
+    config = function()
+      require("transparent").setup { -- Optional, you don't have to run setup.
+        groups = { -- table: default groups
+          "BufferLineTabClose",
+          "BufferlineBufferSelected",
+          "BufferLineFill",
+          "BufferLineBackground",
+          "BufferLineSeparator",
+          "BufferLineIndicatorSelected",
+          "BufferLineDevIconDefault",
+          "Normal",
+          "SignColumn",
+          "NormalNC",
+          "TelescopeBorder",
+          "NvimTreeNormal",
+          "EndOfBuffer",
+          "MsgArea",
+          "WhichKeyFloat",
+          "FloatBorder",
+          "NormalFloat",
+          "VertSplit",
+          "WinBar",
+          "StatusLine",
+          "StatusLineNC",
+          "WinBarNC",
+          "TelescopeNormal",
+          "DiffviewNormal",
+          --
+          "LspReferenceText",
+          "LspReferenceRead",
+          "LspReferenceText",
+          "LspFloatWinNormal",
+          "LspReferenceWrite",
+          "CmpDocumentation",
+          "NormalSB", -- help tag
+          "SignColumnSB", -- help tag
+        },
+        extra_groups = {
+          "NeoTreeNormal",
+          "NeoTreeNormalNC",
+        }, -- table: additional groups that should be cleared
+        exclude_groups = {}, -- table: groups you don't want to clear
       }
     end,
   },

@@ -18,6 +18,7 @@ return {
     },
     -- vim options can be configured here
     options = {
+
       opt = { -- vim.opt.<key>
         relativenumber = true, -- sets vim.opt.relativenumber
         number = true, -- sets vim.opt.number
@@ -41,6 +42,22 @@ return {
         -- navigate buffer tabs with `H` and `L`
         L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        ["<Leader>c"] = {
+          function()
+            local bufs = vim.fn.getbufinfo { buflisted = true }
+            require("astrocore.buffer").close(0)
+            if require("astrocore").is_available "alpha-nvim" and not bufs[2] then require("alpha").start() end
+          end,
+          desc = "Close buffer",
+        },
+        ["<Leader>bC"] = {
+          function()
+            local bufs = vim.fn.getbufinfo { buflisted = true }
+            require("astrocore.buffer").close(0)
+            if require("astrocore").is_available "alpha-nvim" and not bufs[2] then require("alpha").start() end
+          end,
+          desc = "Close all buffer",
+        },
       },
       t = {
         -- setting a mapping to false will disable it
